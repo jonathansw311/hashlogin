@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1 class="display-1">Feeedback page</h1>
+<p class="lead">All feedback is listed below</p>
+
+<div class="container">
+<ul class="list-group">
+{% for feed in feedback %}
+<li class="list-group-item">Title-{{feed.title}}{% if session['user_id']== feed.username%} 
+<a href='/feedbackfeed/{{feed.id}}/feedback/delete' method="POST"><i class="bi bi-trash3-fill"></i></a>
+<a href='/feedback/{{feed.id}}/update'><i class="bi bi-pencil"></i> </a>
+{% endif %}</li>
+<li class="list-group-item">Content: {{feed.content}} *By - {{feed.username}}</li><br>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
